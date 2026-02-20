@@ -5,8 +5,9 @@ import Header from "@/components/header";
 import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 import { Toaster } from "sonner";
+import { isClerkConfigured } from "@/lib/clerk";
 
-const inter = Inter({ subsets: ["latin"]})
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "JobGeniusAI - AI Career Coach",
@@ -14,57 +15,71 @@ export const metadata = {
   icon: "icon.png",
 };
 
-export default function RootLayout({ children }) {
+function AppShell({ children }) {
   return (
-    <ClerkProvider appearance={{
-      baseTheme: dark,
-    }}>
     <html lang="en" suppressHydrationWarning>
       <head>
-          <link rel="icon" href="/logo5.png" sizes="any" />
+        <link rel="icon" href="/logo5.png" sizes="any" />
 
-          {/* Google Analytics Tag : Google tag (gtag.js) */}
-          <script async src="https://www.googletagmanager.com/gtag/js?id=G-NNGSLBEB2L"></script>
-          <script dangerouslySetInnerHTML={{ __html: `
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-NNGSLBEB2L"
+        ></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', 'G-NNGSLBEB2L');
-          `}} />
+          `,
+          }}
+        />
       </head>
-      <body
-        className={`${inter.className}`}
-      >
+      <body className={`${inter.className}`}>
         <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem
-            disableTransitionOnChange
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
         >
-          {/* header */}
-          <Header/>
+          <Header />
 
           <main className="min-h-screen">{children}</main>
 
           <Toaster richColors />
 
-          {/* footer */}
-          {/* <footer className="bg-muted/50 py-12">
-            <div className="container mx-auto px-4 text-center text-gray-200">
-              <p>Made with ❤️ by Dev Goyal</p>
-            </div>
-          </footer> */}
-
           <footer className="bg-muted/50 py-12">
             <p className="text-lg font-bold container mx-auto px-4 text-center text-gray-200">
               Made with ❤️ by
-              <a  href="https://github.com/DevGoyalG" className="text-yellow-400 hover:text-red-300" target="_blank"> Dev Goyal</a>
+              <a
+                href="https://github.com/DevGoyalG"
+                className="text-yellow-400 hover:text-red-300"
+                target="_blank"
+              >
+                {" "}
+                Dev Goyal
+              </a>
             </p>
           </footer>
-          
         </ThemeProvider>
       </body>
     </html>
+  );
+}
+
+export default function RootLayout({ children }) {
+  if (!isClerkConfigured) {
+    return <AppShell>{children}</AppShell>;
+  }
+
+  return (
+    <ClerkProvider
+      appearance={{
+        baseTheme: dark,
+      }}
+    >
+      <AppShell>{children}</AppShell>
     </ClerkProvider>
   );
 }
