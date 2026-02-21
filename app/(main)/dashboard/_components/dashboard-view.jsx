@@ -70,15 +70,11 @@ const DashboardView = ({ insights }) => {
   const lastUpdatedDate = format(new Date(insights.lastUpdated), "dd/MM/yyyy");
   const nextUpdateDistance = formatDistanceToNow(
     new Date(insights.nextUpdate),
-    { addSuffix: true }
+    { addSuffix: true },
   );
 
   return (
     <div className="space-y-6">
-      <div className="flex justify-between items-center">
-        <Badge variant="outline">Last updated: {lastUpdatedDate}</Badge>
-      </div>
-
       {/* Market Overview Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <Card>
@@ -120,7 +116,7 @@ const DashboardView = ({ insights }) => {
             <div className="text-2xl font-bold">{insights.demandLevel}</div>
             <div
               className={`h-2 w-full rounded-full mt-2 ${getDemandLevelColor(
-                insights.demandLevel
+                insights.demandLevel,
               )}`}
             />
           </CardContent>

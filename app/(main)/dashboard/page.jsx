@@ -15,7 +15,15 @@ export default async function DashboardPage() {
   const insights = await getIndustryInsights();
 
   return (
-    <div className="container mx-auto">
+    <div className="max-w-4xl mx-auto space-y-4">
+      <div className="text-center">
+        <h1 className="font-bold gradient-title text-5xl md:text-6xl">
+          Dashboard
+        </h1>
+        <p className="text-muted-foreground">
+          Industry insights and career analytics
+        </p>
+      </div>
       <DashboardView insights={insights} />
     </div>
   );
