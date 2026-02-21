@@ -44,8 +44,31 @@ export async function generateCoverLetter(data) {
   `;
 
   try {
-    const result = await model.generateContent(prompt);
-    const content = result.response.text().trim();
+    // Temporarily using fallback due to AI model issues
+    // const result = await model.generateContent(prompt);
+    // const content = result.response.text().trim();
+
+    const content = `
+# ${data.jobTitle} Application
+
+Dear Hiring Manager at ${data.companyName},
+
+I am writing to express my strong interest in the ${data.jobTitle} position at ${data.companyName}. With my background in ${user.industry} and ${user.experience} years of experience, I am confident in my ability to contribute effectively to your team.
+
+## Professional Background
+${user.bio || "I am a dedicated professional with a passion for excellence and innovation in my field."}
+
+## Key Skills
+${user.skills || "I bring a comprehensive skill set that aligns with your requirements."}
+
+## Why ${data.companyName}?
+Based on the job description, I am particularly drawn to this opportunity because it aligns perfectly with my career goals and expertise. I am excited about the possibility of bringing my unique perspective and skills to your organization.
+
+I would welcome the opportunity to discuss how my background, skills, and enthusiasm would be an excellent match for this position. Thank you for considering my application.
+
+Sincerely,
+${user.fullName || "Applicant"}
+    `.trim();
 
     const coverLetter = await db.coverLetter.create({
       data: {
