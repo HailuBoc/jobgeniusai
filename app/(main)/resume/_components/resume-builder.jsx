@@ -174,6 +174,7 @@ export default function ResumeBuilder({ initialContent }) {
             variant="destructive"
             onClick={handleSubmit(onSubmit)}
             disabled={isSaving}
+            className="transition-all duration-200 hover:scale-105 active:scale-95"
           >
             {isSaving ? (
               <>
@@ -187,10 +188,14 @@ export default function ResumeBuilder({ initialContent }) {
               </>
             )}
           </Button>
-          <Button onClick={generatePDF} disabled={isGenerating}>
+          <Button
+            onClick={generatePDF}
+            disabled={isGenerating}
+            className="transition-all duration-200 hover:scale-105 active:scale-95"
+          >
             {isGenerating ? (
               <>
-                <Loader2 className="h-4 w-4 animate-spin" />
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                 Generating PDF...
               </>
             ) : (
