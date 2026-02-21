@@ -1,20 +1,21 @@
-import React from 'react';
+import React from "react";
 import { getAssessments } from "@/actions/interview";
-import StatsCards from './_components/stats-cards';
-import PerformanceChart from './_components/performance-chart';
-import QuizList from './_components/quiz-list';
+import StatsCards from "./_components/stats-cards";
+import PerformanceChart from "./_components/performance-chart";
+import QuizList from "./_components/quiz-list";
 
-
-const InterviewPage = async() => {
-
+const InterviewPage = async () => {
   const assessments = await getAssessments();
 
   return (
-    <div>
-      <div className="flex items-center justify-between mb-5">
-        <h1 className="text-6xl font-bold gradient-title">
+    <div className="max-w-4xl mx-auto space-y-4">
+      <div className="text-center">
+        <h1 className="font-bold gradient-title text-5xl md:text-6xl">
           Interview Preparation
         </h1>
+        <p className="text-muted-foreground">
+          Practice and improve your interview skills
+        </p>
       </div>
       <div className="space-y-6">
         <StatsCards assessments={assessments} />
@@ -22,7 +23,7 @@ const InterviewPage = async() => {
         <QuizList assessments={assessments} />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default InterviewPage
+export default InterviewPage;

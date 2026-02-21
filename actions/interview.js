@@ -44,13 +44,140 @@ export async function generateQuiz() {
   `;
 
   try {
-    const result = await model.generateContent(prompt);
-    const response = result.response;
-    const text = response.text();
-    const cleanedText = text.replace(/```(?:json)?\n?/g, "").trim();
-    const quiz = JSON.parse(cleanedText);
+    // Temporarily using fallback due to AI model issues
+    // const result = await model.generateContent(prompt);
+    // const response = result.response;
+    // const text = response.text();
+    // const cleanedText = text.replace(/```(?:json)?\n?/g, "").trim();
+    // const quiz = JSON.parse(cleanedText);
 
-    return quiz.questions;
+    // Fallback quiz questions based on common interview topics
+    const fallbackQuestions = [
+      {
+        question: `What is the most important skill for a ${user.industry} professional?`,
+        options: [
+          "Technical proficiency",
+          "Communication skills",
+          "Problem-solving ability",
+          "Leadership skills",
+        ],
+        correctAnswer: "Problem-solving ability",
+        explanation:
+          "Problem-solving is crucial in any industry as it demonstrates the ability to handle challenges effectively.",
+      },
+      {
+        question: "How do you approach learning new technologies?",
+        options: [
+          "Wait for training sessions",
+          "Self-study with online resources",
+          "Learn from colleagues",
+          "Focus only on what's required for current projects",
+        ],
+        correctAnswer: "Self-study with online resources",
+        explanation:
+          "Proactive self-learning shows initiative and adaptability in a rapidly changing technical landscape.",
+      },
+      {
+        question: "What's your approach to handling project deadlines?",
+        options: [
+          "Work overtime to meet deadlines",
+          "Communicate early if deadlines are unrealistic",
+          "Focus on quality even if it means missing deadlines",
+          "Delegate all work to team members",
+        ],
+        correctAnswer: "Communicate early if deadlines are unrealistic",
+        explanation:
+          "Early communication about timeline issues allows for better planning and resource allocation.",
+      },
+      {
+        question: "How do you ensure code quality in your projects?",
+        options: [
+          "Rely on testing team",
+          "Write comprehensive tests and code reviews",
+          "Focus on features over quality",
+          "Use automated tools only",
+        ],
+        correctAnswer: "Write comprehensive tests and code reviews",
+        explanation:
+          "Combining automated testing with manual code reviews provides the best quality assurance.",
+      },
+      {
+        question: "What's your strategy for debugging complex issues?",
+        options: [
+          "Random trial and error",
+          "Systematic isolation of variables",
+          "Ask senior developers immediately",
+          "Rewrite the entire module",
+        ],
+        correctAnswer: "Systematic isolation of variables",
+        explanation:
+          "A systematic approach to debugging is more efficient and helps in understanding the root cause.",
+      },
+      {
+        question: "How do you handle disagreements with team members?",
+        options: [
+          "Avoid confrontation",
+          "Focus on data and facts to find common ground",
+          "Insist on your approach",
+          "Escalate to management immediately",
+        ],
+        correctAnswer: "Focus on data and facts to find common ground",
+        explanation:
+          "Data-driven discussions help resolve conflicts objectively and lead to better solutions.",
+      },
+      {
+        question: "What motivates you in your professional career?",
+        options: [
+          "Salary and benefits",
+          "Learning new skills and solving challenges",
+          "Job security",
+          "Recognition from peers",
+        ],
+        correctAnswer: "Learning new skills and solving challenges",
+        explanation:
+          "Continuous learning and challenge-driven motivation leads to long-term career growth.",
+      },
+      {
+        question: "How do you prioritize multiple competing tasks?",
+        options: [
+          "Work on the easiest tasks first",
+          "Focus on the most urgent deadlines",
+          "Assess impact and urgency to prioritize",
+          "Work on tasks you enjoy most",
+        ],
+        correctAnswer: "Assess impact and urgency to prioritize",
+        explanation:
+          "Evaluating both impact and urgency ensures the most valuable work is completed first.",
+      },
+      {
+        question: "What's your approach to mentoring junior developers?",
+        options: [
+          "Let them learn on their own",
+          "Provide guidance and encourage independent problem-solving",
+          "Give them all the answers",
+          "Avoid mentoring to focus on your own work",
+        ],
+        correctAnswer:
+          "Provide guidance and encourage independent problem-solving",
+        explanation:
+          "Effective mentoring balances guidance with allowing juniors to develop their problem-solving skills.",
+      },
+      {
+        question: "How do you stay updated with industry trends?",
+        options: [
+          "Rely on company training",
+          "Follow industry blogs, attend conferences, and participate in communities",
+          "Focus only on current job requirements",
+          "Wait for colleagues to share information",
+        ],
+        correctAnswer:
+          "Follow industry blogs, attend conferences, and participate in communities",
+        explanation:
+          "Active engagement with the industry community helps maintain relevance and continuous growth.",
+      },
+    ];
+
+    return fallbackQuestions;
   } catch (error) {
     console.error("Error generating quiz:", error);
     throw new Error("Failed to generate quiz questions");
@@ -100,9 +227,20 @@ export async function saveQuizResult(questions, answers, score) {
     `;
 
     try {
-      const tipResult = await model.generateContent(improvementPrompt);
+      // Temporarily using fallback due to AI model issues
+      // const tipResult = await model.generateContent(improvementPrompt);
+      // improvementTip = tipResult.response.text().trim();
 
-      improvementTip = tipResult.response.text().trim();
+      // Fallback improvement tips based on common patterns
+      const fallbackTips = [
+        "Focus on strengthening your foundational knowledge in core concepts.",
+        "Practice more hands-on exercises to reinforce your understanding.",
+        "Review best practices and industry standards for better implementation.",
+        "Consider studying real-world case studies to improve practical application.",
+        "Dedicate time to understand the 'why' behind solutions, not just the 'how'.",
+      ];
+
+      improvementTip = fallbackTips[wrongAnswers.length % fallbackTips.length];
       console.log(improvementTip);
     } catch (error) {
       console.error("Error generating improvement tip:", error);
