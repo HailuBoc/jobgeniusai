@@ -51,14 +51,14 @@ function AppShell({ children }) {
 
           <footer className="bg-muted/50 py-12">
             <p className="text-lg font-bold container mx-auto px-4 text-center text-gray-200">
-              Made with ❤️ by
+              Made by
               <a
-                href="https://github.com/DevGoyalG"
+                href="https://github.com/hailuBoc"
                 className="text-yellow-400 hover:text-red-300"
                 target="_blank"
               >
                 {" "}
-                Dev Goyal
+                Hailegebrel Yalember
               </a>
             </p>
           </footer>

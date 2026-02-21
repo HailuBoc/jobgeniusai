@@ -56,7 +56,7 @@ const HeroSection = () => {
               </Button>
             </Link>
           </SignedIn>
-          <Link href="https://www.linkedin.com/in/devgoyalg/">
+          <Link href="https://www.linkedin.com/in/hailegebrel-yalember-5158712bb/">
             <Button size="lg" variant="outline" className="px-8">
               Watch Demo
             </Button>
