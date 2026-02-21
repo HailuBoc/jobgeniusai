@@ -28,32 +28,23 @@ export async function updateUser(data) {
 
         // If industry doesn't exist, create it with default values
         if (!industryInsight) {
-          const insights = await generateAIInsights(data.industry);
+          // Temporarily using fallback data due to AI model issues
+          // const insights = await generateAIInsights(data.industry);
 
-          industryInsight = await db.industryInsight.create({
+          industryInsight = await tx.industryInsight.create({
             data: {
               industry: data.industry,
-              ...insights,
+              salaryRanges: [],
+              growthRate: 0,
+              demandLevel: "MEDIUM",
+              topSkills: [],
+              marketOutlook: "NEUTRAL",
+              keyTrends: [],
+              recommendedSkills: [],
               nextUpdate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
             },
           });
         }
-
-        // if (!industryInsight) {
-        //     industryInsight = await tx.industryInsight.create({
-        //         data: {
-        //             industry: data.industry,
-        //             salaryRanges: [],
-        //             growthRate: 0,
-        //             demandLevel: "MEDIUM",
-        //             topSkills: [],
-        //             marketOutlook: "NEUTRAL",
-        //             keyTrends:[],
-        //             recommendedSkills:[],
-        //             nextUpdate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-        //         }
-        //     })
-        // }
 
         // Now update the user
         const updatedUser = await tx.user.update({
@@ -72,7 +63,7 @@ export async function updateUser(data) {
       },
       {
         timeout: 10000, // default: 5000
-      }
+      },
     );
 
     // revalidatePath("/");
