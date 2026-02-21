@@ -9,18 +9,20 @@ export default async function EditCoverLetterPage({ params }) {
   const coverLetter = await getCoverLetter(id);
 
   return (
-    <div className="container mx-auto py-6">
-      <div className="flex flex-col space-y-2">
+    <div className="space-y-4">
+      <div className="text-center">
         <Link href="/ai-cover-letter">
           <Button variant="link" className="gap-2 pl-0">
             <ArrowLeft className="h-4 w-4" />
             Back to Cover Letters
           </Button>
         </Link>
-
-        <h1 className="text-6xl font-bold gradient-title mb-6">
+        <h1 className="font-bold gradient-title text-5xl md:text-6xl mt-2">
           {coverLetter?.jobTitle} at {coverLetter?.companyName}
         </h1>
+        <p className="text-muted-foreground">
+          Cover letter preview and management
+        </p>
       </div>
 
       <CoverLetterPreview content={coverLetter?.content} />
