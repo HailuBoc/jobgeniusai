@@ -205,10 +205,12 @@ export default function ResumeBuilder({ initialContent }) {
       </div>
 
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList>
-          <TabsTrigger value="edit">Form</TabsTrigger>
-          <TabsTrigger value="preview">Markdown</TabsTrigger>
-        </TabsList>
+        <div className="justify-center">
+          <TabsList>
+            <TabsTrigger value="edit">Form</TabsTrigger>
+            <TabsTrigger value="preview">Markdown</TabsTrigger>
+          </TabsList>
+        </div>
 
         <TabsContent value="edit">
           <div className="max-w-4xl mx-auto">
@@ -386,69 +388,46 @@ export default function ResumeBuilder({ initialContent }) {
         </TabsContent>
 
         <TabsContent value="preview">
-          <div className="flex justify-end pr-6 mb-6">
-            {activeTab === "preview" && (
-              <Button
-                variant="link"
-                type="button"
-                className=""
-                onClick={() =>
-                  setResumeMode(resumeMode === "preview" ? "edit" : "preview")
-                }
-              >
-                {resumeMode === "preview" ? (
-                  <>
-                    <Edit className="h-4 w-4" />
-                    Edit Resume
-                  </>
-                ) : (
-                  <>
-                    <Monitor className="h-4 w-4" />
-                    Show Preview
-                  </>
-                )}
-              </Button>
-            )}
-          </div>
-
-          {activeTab === "preview" && resumeMode !== "preview" && (
-            <div className="flex p-3 gap-2 items-center border-2 border-yellow-600 text-yellow-600 rounded mb-2">
-              <AlertTriangle className="h-5 w-5" />
-              <span className="text-sm">
-                You will lose editied markdown if you update the form data.
-              </span>
+          <div className="max-w-4xl mx-auto">
+            <div className="flex justify-end pr-6 mb-6">
+              {activeTab === "preview" && (
+                <Button
+                  variant="link"
+                  type="button"
+                  onClick={() =>
+                    setResumeMode(resumeMode === "preview" ? "edit" : "preview")
+                  }
+                >
+                  {resumeMode === "preview" ? (
+                    <>
+                      <Edit className="h-4 w-4" />
+                      Edit Resume
+                    </>
+                  ) : (
+                    <>
+                      <Monitor className="h-4 w-4" />
+                      Show Preview
+                    </>
+                  )}
+                </Button>
+              )}
             </div>
-          )}
-          <div className="border rounded-lg">
-            <MDEditor
-              value={previewContent}
-              onChange={setPreviewContent}
-              height={800}
-              preview={resumeMode}
-            />
-          </div>
-          <div className="hidden">
-            <div
-              id="resume-pdf"
-              style={{
-                width: "210mm",
-                minHeight: "297mm",
-                padding: "20mm",
-                background: "white",
-                color: "black",
-                fontFamily: "Arial, sans-serif",
-                fontSize: "12px",
-                lineHeight: "1.4",
-              }}
-            >
-              <MDEditor.Markdown
-                source={previewContent}
-                style={{
-                  background: "white",
-                  color: "black",
-                  fontSize: "12px",
-                  lineHeight: "1.4",
-                }}
+
+            {activeTab === "preview" && resumeMode !== "preview" && (
+              <div className="flex p-3 gap-2 items-center border-2 border-yellow-600 text-yellow-600 rounded">
+                <AlertTriangle className="h-5 w-5" />
+                <span className="text-sm">
+                  You will lose editied markdown if you update the form data.
+                </span>
+              </div>
+            )}
+
+            <div className="border rounded-lg">
+              <MDEditor
+                value={previewContent}
+                onChange={setPreviewContent}
+                height={800}
+                preview={resumeMode}
               />
             </div>
           </div>
