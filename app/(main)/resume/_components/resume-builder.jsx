@@ -165,7 +165,8 @@ export default function ResumeBuilder({ initialContent }) {
 
   return (
     <div data-color-mode="light" className="space-y-4">
-      <div className="flex flex-col md:flex-row justify-between items-center gap-2">
+      <div className="flex flex-col items-center gap-4">
+        {" "}
         <h1 className="font-bold gradient-title text-5xl md:text-6xl">
           Resume Builder
         </h1>
@@ -174,7 +175,6 @@ export default function ResumeBuilder({ initialContent }) {
             variant="destructive"
             onClick={handleSubmit(onSubmit)}
             disabled={isSaving}
-            className="transition-all duration-200 hover:scale-105 active:scale-95"
           >
             {isSaving ? (
               <>
@@ -188,14 +188,10 @@ export default function ResumeBuilder({ initialContent }) {
               </>
             )}
           </Button>
-          <Button
-            onClick={generatePDF}
-            disabled={isGenerating}
-            className="transition-all duration-200 hover:scale-105 active:scale-95"
-          >
+          <Button onClick={generatePDF} disabled={isGenerating}>
             {isGenerating ? (
               <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                <Loader2 className="h-4 w-4 animate-spin" />
                 Generating PDF...
               </>
             ) : (
@@ -390,28 +386,30 @@ export default function ResumeBuilder({ initialContent }) {
         </TabsContent>
 
         <TabsContent value="preview">
-          {activeTab === "preview" && (
-            <Button
-              variant="link"
-              type="button"
-              className="mb-2"
-              onClick={() =>
-                setResumeMode(resumeMode === "preview" ? "edit" : "preview")
-              }
-            >
-              {resumeMode === "preview" ? (
-                <>
-                  <Edit className="h-4 w-4" />
-                  Edit Resume
-                </>
-              ) : (
-                <>
-                  <Monitor className="h-4 w-4" />
-                  Show Preview
-                </>
-              )}
-            </Button>
-          )}
+          <div className="flex justify-end pr-6 mb-6">
+            {activeTab === "preview" && (
+              <Button
+                variant="link"
+                type="button"
+                className=""
+                onClick={() =>
+                  setResumeMode(resumeMode === "preview" ? "edit" : "preview")
+                }
+              >
+                {resumeMode === "preview" ? (
+                  <>
+                    <Edit className="h-4 w-4" />
+                    Edit Resume
+                  </>
+                ) : (
+                  <>
+                    <Monitor className="h-4 w-4" />
+                    Show Preview
+                  </>
+                )}
+              </Button>
+            )}
+          </div>
 
           {activeTab === "preview" && resumeMode !== "preview" && (
             <div className="flex p-3 gap-2 items-center border-2 border-yellow-600 text-yellow-600 rounded mb-2">
