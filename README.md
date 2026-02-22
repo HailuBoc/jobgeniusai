@@ -1,40 +1,52 @@
-![Star Badge](https://img.shields.io/static/v1?label=%F0%9F%8C%9F&message=If%20Useful&style=flat&color=BC4E99)
-![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)
-[![View My Profile](https://img.shields.io/badge/View-My_Profile-green?logo=GitHub)](https://github.com/DevGoyalG)
-[![View Repositories](https://img.shields.io/badge/View-My_Repositories-0A66C2?logo=GitHub&logoColor=white)](https://github.com/DevGoyalG?tab=repositories)
+# 💼 JobGeniusAI – AI Career Coach
 
-<h1 align="center">💼 JobGeniusAI – AI Career Coach 🤖</h1>
+Your intelligent career companion powered by AI. Build professional resumes, craft personalized cover letters, and ace your interviews with AI-driven guidance.
 
-![Demo App](https://github.com/DevGoyalG/JobGeniusAI/blob/main/JobGeniusAI.png)
+## 🌟 Features
 
-## 🌟 Highlights:
+- **AI Resume Builder** - Create professional resumes with Markdown editor and PDF export
+- **Cover Letter Generator** - Personalized cover letters for job applications
+- **Interview Preparation** - AI-generated mock interviews with real-time feedback
+- **Industry Insights** - Market trends, salary data, and skill recommendations
+- **User Authentication** - Secure sign-in/sign-up with Clerk
 
-- 🚀 Tech stack: Next.js, Vite, Tailwind CSS & Shadcn UI  
-- 🧠 LLM Integration (Gemini AI) for smart recommendations  
-- 📄 AI Resume & Cover Letter Builder  
-- 🎯 Personalized Interview Preparation  
-- 📊 Industry Insights Module  
-- 🔒 Authentication & Authorization (Clerk)  
-- 💾 Database Management (Neon PostgreSQL)  
-- 💻 Modern, Responsive UI Design  
-- 🎭 Client & Server Components with seamless integration  
-- 🌐 Deployed for high performance on Vercel  
+## 🛠️ Tech Stack
 
-## ✨ Features
+- **Frontend**: Next.js 15, React 19, Tailwind CSS, Shadcn UI
+- **Backend**: Prisma ORM, PostgreSQL, Server Actions
+- **AI**: Google Gemini API for smart recommendations
+- **Authentication**: Clerk for secure user management
 
-- **AI-Powered Resume Builder**: Generate tailored resumes based on your skills and experience.
-- **Cover Letter Generator**: Create personalized cover letters for job applications.
-- **Interview Preparation**: Access common interview questions and tips.
-- **Industry Insights**: Stay updated with the latest trends in your desired field.
-- **User Authentication**: Secure sign-in/sign-up using Clerk.
-- **Responsive Design**: Seamless experience across devices.
+## 🚀 Getting Started
 
-## Setup .env file
+### Prerequisites
+
+- Node.js 18+
+- PostgreSQL database
+- Google Gemini API key
+- Clerk authentication setup
+
+### Installation
+
+1. Clone the repository
+
+```bash
+git clone https://github.com/HailuBoc/jobgeniusai.git
+cd JobGeniusAI
+```
+
+2. Install dependencies
+
+```bash
+npm install
+```
+
+3. Set up environment variables
 
 ```env
 # Clerk Authentication
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
-CLERK_SECRET_KEY=
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+CLERK_SECRET_KEY=your_clerk_secret_key
 
 # Clerk Redirect URLs
 NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
@@ -43,87 +55,60 @@ NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/onboarding
 NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/onboarding
 
 # Database
-DATABASE_URL=
+DATABASE_URL=postgresql://username:password@localhost:5432/jobgenius_ai
 
-# Gemini API
-GEMINI_API_KEY=
+# Google Gemini AI
+GEMINI_API_KEY=your_gemini_api_key
 ```
 
-## 🧩 Getting Started
+4. Set up database
 
-1. Clone the repository
-
-```shell
-git clone https://github.com/DevGoyalG/ShrinkURLs.git
-cd ShrinkURLs
+```bash
+npx prisma generate
+npx prisma db push
 ```
 
-2. Install dependencies:
+5. Start development server
 
-```shell
-npm install
-```
-
-3. Set up your environment variables as shown above
-4. Run the development server:
-
-```shell
+```bash
 npm run dev
 ```
 
-5. Open [http://localhost:3000](http://localhost:3000) in your browser
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Deployment
+## 📁 Project Structure
 
-This application can be easily deployed to Vercel:
-
-```shell
-npm run build
-npm run start
+```
+JobGeniusAI/
+├── app/
+│   ├── (main)/                 # Main app routes
+│   │   ├── ai-cover-letter/    # Cover letter features
+│   │   ├── dashboard/          # Industry insights
+│   │   ├── interview/          # Interview preparation
+│   │   ├── onboarding/         # User onboarding
+│   │   └── resume/             # Resume builder
+│   ├── api/                    # API routes
+│   └── auth/                   # Authentication pages
+├── components/                 # Reusable UI components
+├── actions/                   # Server actions
+├── lib/                       # Utility functions
+├── prisma/                    # Database schema
+└── public/                    # Static assets
 ```
 
-Or connect your GitHub repository to Vercel for automatic deployments.
+## 🛠️ Available Scripts
 
-## 🚀 Technologies Used
+```bash
+npm run dev          # Start development server
+npm run build        # Build for production
+npm run start        # Start production server
+npm run lint         # Run ESLint
+```
 
-- **Next.js & Vite**: Fast, modern frameworks for frontend and full-stack development  
-- **Tailwind CSS & Shadcn UI**: Utility-first styling and pre-built UI components  
-- **Clerk**: Secure authentication and user management system  
-- **Neon**: Scalable PostgreSQL database solution with serverless support  
-- **Gemini AI**: Google’s LLM for generating smart, context-aware career guidance  
-- **Vercel**: Deployment platform ensuring high performance and global scalability  
+## 🌐 Deployment
 
-## 📚 Learn More
+Deploy to Vercel for best performance:
 
-To learn more about the technologies used in this project:
-
-- [Next.js Documentation](https://nextjs.org/docs)
-- [Clerk Documentation](https://clerk.com/docs)
-- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
-- [Shadcn UI Documentation](https://ui.shadcn.com/docs)
-- [Gemini API Documentation](https://ai.google.dev/gemini-api)
-- [Neon Documentation](https://neon.tech/docs)
-
-## 🤝 Connect with Me
-
-<a href="https://github.com/DevGoyalG" target="_blank">
-  <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub"/>
-</a>
-&nbsp;
-<a href="https://www.linkedin.com/in/devgoyalg/" target="_blank">
-  <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"/>
-</a>
-&nbsp;
-<a href="https://www.instagram.com/dev_goyal_g/" target="_blank">
-  <img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram"/>
-</a>
-&nbsp;
-<a href="https://x.com/dev_goyal_g" target="_blank">
-  <img src="https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white" alt="Twitter"/>
-</a>
-
----
-
-<p align="center">
-  <b>Thank you for visiting! Happy Learning 🚀</b>
-</p>
+1. Connect your GitHub repository to Vercel
+2. Add environment variables
+3. Deploy automatically on push to main branch
