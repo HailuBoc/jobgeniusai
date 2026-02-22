@@ -43,19 +43,22 @@ const Header = async () => {
                 <Link href="/dashboard">
                   <Button
                     variant="outline"
-                    className="hidden md:inline-flex items-center gap-2"
+                    className="hidden md:inline-flex items-center gap-2 transition-all duration-200 hover:scale-105 active:scale-95"
                   >
                     <LayoutDashboard className="h-4 w-4" />
                     Industry Insights
                   </Button>
-                  <Button variant="ghost" className="md:hidden w-10 h-10 p-0">
+                  <Button
+                    variant="ghost"
+                    className="md:hidden w-10 h-10 p-0 transition-all duration-200 hover:scale-105 active:scale-95"
+                  >
                     <LayoutDashboard className="h-4 w-4" />
                   </Button>
                 </Link>
 
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button className="flex items-center gap-2">
+                    <Button className="flex items-center gap-2 transition-all duration-200 hover:scale-105 active:scale-95">
                       <StarsIcon className="h-4 w-4" />
                       <span className="hidden md:block">Growth Tools</span>
                       <ChevronDown className="h-4 w-4" />
@@ -63,7 +66,10 @@ const Header = async () => {
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end" className="w-48">
                     <DropdownMenuItem asChild>
-                      <Link href="/resume" className="flex items-center gap-2">
+                      <Link
+                        href="/resume"
+                        className="flex items-center gap-2 transition-colors duration-200 hover:bg-accent"
+                      >
                         <FileText className="h-4 w-4" />
                         Build Resume
                       </Link>
@@ -71,7 +77,7 @@ const Header = async () => {
                     <DropdownMenuItem asChild>
                       <Link
                         href="/ai-cover-letter"
-                        className="flex items-center gap-2"
+                        className="flex items-center gap-2 transition-colors duration-200 hover:bg-accent"
                       >
                         <PenBox className="h-4 w-4" />
                         Cover Letter
@@ -80,7 +86,7 @@ const Header = async () => {
                     <DropdownMenuItem asChild>
                       <Link
                         href="/interview"
-                        className="flex items-center gap-2"
+                        className="flex items-center gap-2 transition-colors duration-200 hover:bg-accent"
                       >
                         <GraduationCap className="h-4 w-4" />
                         Interview Prep

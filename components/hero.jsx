@@ -44,20 +44,30 @@ const HeroSection = () => {
         <div className="flex justify-center space-x-4">
           <SignedOut>
             <SignInButton mode="modal" redirectUrl="/onboarding">
-              <Button size="lg" className="px-8">
+              <Button
+                size="lg"
+                className="px-8 transition-all duration-200 hover:scale-105 active:scale-95"
+              >
                 Get Started
               </Button>
             </SignInButton>
           </SignedOut>
           <SignedIn>
             <Link href="/onboarding">
-              <Button size="lg" className="px-8">
+              <Button
+                size="lg"
+                className="px-8 transition-all duration-200 hover:scale-105 active:scale-95"
+              >
                 Get Started
               </Button>
             </Link>
           </SignedIn>
           <Link href="https://www.linkedin.com/in/hailegebrel-yalember-5158712bb/">
-            <Button size="lg" variant="outline" className="px-8">
+            <Button
+              size="lg"
+              variant="outline"
+              className="px-8 transition-all duration-200 hover:scale-105 active:scale-95"
+            >
               Watch Demo
             </Button>
           </Link>
