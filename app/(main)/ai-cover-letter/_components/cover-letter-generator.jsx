@@ -15,8 +15,12 @@ import useFetch from "@/hooks/use-fetch";
 import { coverLetterSchema } from "@/app/lib/schema";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import MDEditor from "@uiw/react-md-editor";
 import dynamic from "next/dynamic";
+
+// Dynamically import MDEditor to avoid SSR issues
+const MDEditor = dynamic(() => import("@uiw/react-md-editor"), {
+  ssr: false,
+});
 
 // Dynamically import html2pdf to avoid SSR issues
 const html2pdf = dynamic(() => import("html2pdf.js/dist/html2pdf.min.js"), {
