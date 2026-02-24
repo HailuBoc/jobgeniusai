@@ -23,7 +23,12 @@ import useFetch from "@/hooks/use-fetch";
 import { useUser } from "@clerk/nextjs";
 import { entriesToMarkdown } from "@/app/lib/helper";
 import { resumeSchema } from "@/app/lib/schema";
-import html2pdf from "html2pdf.js/dist/html2pdf.min.js";
+import dynamic from "next/dynamic";
+
+// Dynamically import html2pdf to avoid SSR issues
+const html2pdf = dynamic(() => import("html2pdf.js/dist/html2pdf.min.js"), {
+  ssr: false,
+});
 
 export default function ResumeBuilder({ initialContent }) {
   const [activeTab, setActiveTab] = useState("edit");
@@ -115,6 +120,9 @@ export default function ResumeBuilder({ initialContent }) {
   const generatePDF = async () => {
     setIsGenerating(true);
     try {
+      const html2pdfModule = await import("html2pdf.js/dist/html2pdf.min.js");
+      const html2pdf = html2pdfModule.default;
+
       const element = document.getElementById("resume-pdf");
       const opt = {
         margin: [10, 10],
